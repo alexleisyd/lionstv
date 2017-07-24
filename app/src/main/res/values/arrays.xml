@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="name">
+        <item>CCTV-1综合高清</item>
+        <item>CCTV-2财经高清</item>
+        <item>CCTV-3综艺高清</item>
+        <item>CCTV-5体育高清</item>
+        <item>CCTV5+高清</item>
+        <item>CCTV-6电影高清</item>
+        <item>CCTV-8电视剧高清</item>
+        <item>湖南卫视高清</item>
+        <item>浙江卫视高清</item>
+        <item>江苏卫视高清</item>
+        <item>东方卫视高清</item>
+        <item>东方卫视标清</item>
+        <item>广东卫视高清</item>
+        <item>凤凰卫视中文台</item>
+        <item>凤凰卫视资讯台</item>
+        <item>凤凰卫视电影台</item>
+        <item>凤凰香港</item>
+        <item>香港HKS</item>
+        <item>TVB翡翠台</item>
+        <item>翡翠台</item>
+        <item>探索频道</item>
+        <item>国家地理频道</item>
+    </string-array>
+    <string-array name="url">
+        <item>https://tv6.ime.moe/hls/cctv1hd.m3u8</item>
+        <item>https://tv6.ime.moe/hls/cctv2hd.m3u8</item>
+        <item>https://tv6.ime.moe/hls/cctv3hd.m3u8</item>
+        <item>https://tv6.ime.moe/hls/cctv5hd.m3u8</item>
+        <item>https://tv6.ime.moe/hls/cctv5phd.m3u8</item>
+        <item>https://tv6.ime.moe/hls/cctv6hd.m3u8</item>
+        <item>https://tv6.ime.moe/hls/cctv8hd.m3u8</item>
+        <item>https://tv6.ime.moe/hls/hunanhd.m3u8</item>
+        <item>https://tv6.ime.moe/hls/zjhd.m3u8</item>
+        <item>https://tv6.ime.moe/hls/jshd.m3u8</item>
+        <item>https://tv6.ime.moe/hls/dfhd.m3u8</item>
+        <item>https://tv6.ime.moe/hls/dftv.m3u8</item>
+        <item>https://tv6.ime.moe/hls/gdhd.m3u8</item>
+        <item>https://tv6.ime.moe/hls/fhzw.m3u8</item>
+        <item>https://tv6.ime.moe/hls/fhzx.m3u8</item>
+        <item>https://tv6.ime.moe/hls/fhdy.m3u8</item>
+        <item>http://zv.3gv.ifeng.com/hongkong800k.m3u8</item>
+        <item>http://live.hkstv.hk.lxdns.com/live/hks/playlist.m3u8</item>
+        <item>http://acm.gg/jade.m3u8</item>
+        <item>http://dlhls.cdn.zhanqi.tv/zqlive/2869_tUPFz.m3u8</item>
+        <item>https://tv6.ime.moe/hls/discovery.m3u8</item>
+        <item>https://tv6.ime.moe/hls/natlgeo.m3u8</item>
+    </string-array>
+</resources>
