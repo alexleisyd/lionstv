@@ -1,0 +1,37 @@
+[
+  {
+    "thumbnailUrl":"http://www.humeplaster.com.au/logo/cctv1.png",
+    "title":"CCTV-1综合高清",
+    "source":"https://tv6.ime.moe/hls/cctv1hd.m3u8"
+  },
+  {
+    "thumbnailUrl":"http://www.humeplaster.com.au/logo/cctv2.png",
+    "title":"CCTV-2财经高清",
+    "source":"https://tv6.ime.moe/hls/cctv2hd.m3u8"
+  },
+  {
+    "thumbnailUrl":"http://www.humeplaster.com.au/logo/cctv3.png",
+    "title":"CCTV-3综艺高清",
+    "source":"https://tv6.ime.moe/hls/cctv3hd.m3u8"
+  },
+  {
+    "thumbnailUrl":"http://www.humeplaster.com.au/logo/cctv5.png",
+    "title":"CCTV-5体育高清",
+    "source":"https://tv6.ime.moe/hls/cctv5hd.m3u8"
+  },
+  {
+    "thumbnailUrl":"http://www.humeplaster.com.au/logo/cctv5plus.png",
+    "title":"CCTV5+高清",
+    "source":"https://tv6.ime.moe/hls/cctv5phd.m3u8"
+  },
+  {
+    "thumbnailUrl":"http://www.humeplaster.com.au/logo/cctv6.png",
+    "title":"CCTV-6电影高清",
+    "source":"https://tv6.ime.moe/hls/cctv6hd.m3u8"
+  },
+  {
+    "thumbnailUrl":"http://www.humeplaster.com.au/logo/cctv8.png",
+    "title":"CCTV-8电视剧高清",
+    "source":"https://tv6.ime.moe/hls/cctv8hd.m3u8"
+  }
+]

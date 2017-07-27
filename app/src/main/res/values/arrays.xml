@@ -1,5 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string-array name="categories">
+        <item>CCTV</item>
+        <item>地方卫视</item>
+        <item>港澳台</item>
+        <item>国外频道</item>
+    </string-array>
+    <string-array name="filename">
+        <item>cctv</item>
+        <item>sattv</item>
+        <item>hk</item>
+        <item>overseas</item>
+    </string-array>
     <string-array name="name">
         <item>CCTV-1综合高清</item>
         <item>CCTV-2财经高清</item>

@@ -1,7 +1,5 @@
 package au.com.lionslogistics.lionstv.model;
 
-import java.util.List;
-
 /**
  * Created by alex-daphne on 24/07/2017.
  * All rights reserved
@@ -10,12 +8,12 @@ import java.util.List;
 public class Channel {
     private String thumbnailUrl;
     private String title;
-    private List<Source> sources;
+    private String source;
 
-    public Channel(String thumbnailUrl, String title, List<Source> sources) {
+    public Channel(String thumbnailUrl, String title, String source) {
         this.thumbnailUrl = thumbnailUrl;
         this.title = title;
-        this.sources = sources;
+        this.source = source;
     }
 
     public String getThumbnailUrl() {
@@ -34,11 +32,11 @@ public class Channel {
         this.title = title;
     }
 
-    public List<Source> getSources() {
-        return sources;
+    public String getSource() {
+        return source;
     }
 
-    public void setSources(List<Source> sources) {
-        this.sources = sources;
+    public void setSource(String source) {
+        this.source = source;
     }
 }

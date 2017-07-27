@@ -2,6 +2,7 @@ package au.com.lionslogistics.lionstv;
 
 import android.app.Application;
 
+import com.facebook.drawee.backends.pipeline.Fresco;
 import com.google.android.exoplayer2.upstream.DataSource;
 import com.google.android.exoplayer2.upstream.DefaultBandwidthMeter;
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
@@ -21,6 +22,7 @@ public class LionsTvApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        Fresco.initialize(this);
         userAgent = Util.getUserAgent(this, "LionsTV");
     }
 

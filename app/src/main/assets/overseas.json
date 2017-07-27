@@ -1,0 +1,12 @@
+[
+  {
+    "thumbnailUrl":"http://www.humeplaster.com.au/logo/Facebook.png",
+    "title":"探索频道",
+    "source":"https://tv6.ime.moe/hls/discovery.m3u8"
+  },
+  {
+    "thumbnailUrl":"http://www.humeplaster.com.au/logo/Facebook.png",
+    "title":"国家地理频道",
+    "source":"https://tv6.ime.moe/hls/natlgeo.m3u8"
+  }
+]

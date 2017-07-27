@@ -1,0 +1,32 @@
+[
+  {
+    "thumbnailUrl":"http://www.humeplaster.com.au/logo/hunantv.jpg",
+    "title":"湖南卫视高清",
+    "source":"https://tv6.ime.moe/hls/hunanhd.m3u8"
+  },
+  {
+    "thumbnailUrl":"http://www.humeplaster.com.au/logo/zjws.jpg",
+    "title":"浙江卫视高清",
+    "source":"https://tv6.ime.moe/hls/zjhd.m3u8"
+  },
+  {
+    "thumbnailUrl":"http://www.humeplaster.com.au/logo/jsws.png",
+    "title":"江苏卫视高清",
+    "source":"https://tv6.ime.moe/hls/jshd.m3u8"
+  },
+  {
+    "thumbnailUrl":"http://www.humeplaster.com.au/logo/dfws.jpg",
+    "title":"东方卫视高清",
+    "source":"https://tv6.ime.moe/hls/dfhd.m3u8"
+  },
+  {
+    "thumbnailUrl":"http://www.humeplaster.com.au/logo/dfws.jpg",
+    "title":"东方卫视标清",
+    "source":"https://tv6.ime.moe/hls/dftv.m3u8"
+  },
+  {
+    "thumbnailUrl":"http://www.humeplaster.com.au/logo/gdtv.jpg",
+    "title":"广东卫视高清",
+    "source":"https://tv6.ime.moe/hls/gdhd.m3u8"
+  }
+]

@@ -1,0 +1,32 @@
+[
+  {
+    "thumbnailUrl":"http://www.humeplaster.com.au/logo/fhws.jpg",
+    "title":"凤凰卫视中文台",
+    "source":"https://tv6.ime.moe/hls/fhzw.m3u8"
+  },
+  {
+    "thumbnailUrl":"http://www.humeplaster.com.au/logo/fhzx.png",
+    "title":"凤凰卫视资讯台",
+    "source":"https://tv6.ime.moe/hls/fhzx.m3u8"
+  },
+  {
+    "thumbnailUrl":"http://www.humeplaster.com.au/logo/fhdy.png",
+    "title":"凤凰卫视电影台",
+    "source":"https://tv6.ime.moe/hls/fhdy.m3u8"
+  },
+  {
+    "thumbnailUrl":"http://www.humeplaster.com.au/logo/fhxg.jpg",
+    "title":"凤凰香港",
+    "source":"http://zv.3gv.ifeng.com/hongkong800k.m3u8"
+  },
+  {
+    "thumbnailUrl":"http://www.humeplaster.com.au/logo/hkstv.jpg",
+    "title":"香港HKS",
+    "source":"http://live.hkstv.hk.lxdns.com/live/hks/playlist.m3u8"
+  },
+  {
+    "thumbnailUrl":"http://www.humeplaster.com.au/logo/tvb.gif",
+    "title":"TVB翡翠台",
+    "source":"http://acm.gg/jade.m3u8"
+  }
+]
