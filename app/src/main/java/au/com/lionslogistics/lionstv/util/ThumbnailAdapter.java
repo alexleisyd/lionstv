@@ -3,9 +3,12 @@ package au.com.lionslogistics.lionstv.util;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
@@ -20,6 +23,7 @@ import java.util.List;
 
 import au.com.lionslogistics.lionstv.R;
 import au.com.lionslogistics.lionstv.model.Channel;
+import au.com.lionslogistics.lionstv.model.Source;
 import au.com.lionslogistics.lionstv.view.PlayerActivity;
 
 /**
@@ -28,9 +32,9 @@ import au.com.lionslogistics.lionstv.view.PlayerActivity;
  */
 
 public class ThumbnailAdapter extends RecyclerView.Adapter<ThumbnailAdapter.ThumbnailViewHolder>{
+    private static final String TAG="ThumbnailAdapter";
     private Context mContext;
     private List<Channel> channels;
-    private Channel selectedItem;
 
     public ThumbnailAdapter(Context mContext, List<Channel> channels) {
         this.mContext = mContext;
@@ -51,10 +55,7 @@ public class ThumbnailAdapter extends RecyclerView.Adapter<ThumbnailAdapter.Thum
         holder.parent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(mContext,PlayerActivity.class);
-                intent.setData(Uri.parse(channel.getSource()));
-                intent.setAction(PlayerActivity.ACTION_VIEW);
-                mContext.startActivity(intent);
+                showPopupMenu(v,channel);
             }
         });
     }
@@ -69,7 +70,7 @@ public class ThumbnailAdapter extends RecyclerView.Adapter<ThumbnailAdapter.Thum
         LinearLayout parent;
         SimpleDraweeView thumbnail;
         TextView title;
-        public ThumbnailViewHolder(View itemView) {
+        ThumbnailViewHolder(View itemView) {
             super(itemView);
             parent= (LinearLayout) itemView.findViewById(R.id.parentPanel);
             title= (TextView) itemView.findViewById(R.id.title);
@@ -78,5 +79,31 @@ public class ThumbnailAdapter extends RecyclerView.Adapter<ThumbnailAdapter.Thum
             thumbnail.setHierarchy(hierarchy);
         }
     }
+
+    private void showPopupMenu(View view, final Channel channel){
+        final PopupMenu popupMenu=new PopupMenu(mContext,view);
+        for (Source source:channel.getSources()){
+            popupMenu.getMenu().add(source.getName());
+        }
+        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                for (Source source:channel.getSources()){
+                   if (source.getName().equals(item.getTitle())){
+                       Log.e(TAG,"URL: "+source.getUrl());
+                       Intent intent=new Intent(mContext,PlayerActivity.class);
+                       intent.setData(Uri.parse(source.getUrl()));
+                       intent.setAction(PlayerActivity.ACTION_VIEW);
+                       mContext.startActivity(intent);
+                       return true;
+                   }
+                }
+                return false;
+            }
+        });
+        popupMenu.show();
+    }
+
+
 
 }

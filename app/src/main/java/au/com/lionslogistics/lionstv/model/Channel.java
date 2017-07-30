@@ -8,12 +8,12 @@ package au.com.lionslogistics.lionstv.model;
 public class Channel {
     private String thumbnailUrl;
     private String title;
-    private String source;
+    private Source[] sources;
 
-    public Channel(String thumbnailUrl, String title, String source) {
+    public Channel(String thumbnailUrl, String title, Source[] sources) {
         this.thumbnailUrl = thumbnailUrl;
         this.title = title;
-        this.source = source;
+        this.sources = sources;
     }
 
     public String getThumbnailUrl() {
@@ -32,11 +32,11 @@ public class Channel {
         this.title = title;
     }
 
-    public String getSource() {
-        return source;
+    public Source[] getSources() {
+        return sources;
     }
 
-    public void setSource(String source) {
-        this.source = source;
+    public void setSources(Source[] source) {
+        this.sources = source;
     }
 }

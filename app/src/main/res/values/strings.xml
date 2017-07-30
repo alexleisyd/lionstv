@@ -3,6 +3,7 @@
     <string name="url">Video URL</string>
     <string name="play">Play</string>
     <string name="application_name">ExoPlayer</string>
+    <string name="error">Error</string>
 
     <string name="video">Video</string>
 
@@ -43,4 +44,6 @@
     <string name="storage_permission_denied">Permission to access storage was denied</string>
 
     <string name="sample_list_load_error">One or more sample lists failed to load</string>
+
+    <string name="network_error">A network error occurred. Error code: </string>
 </resources>

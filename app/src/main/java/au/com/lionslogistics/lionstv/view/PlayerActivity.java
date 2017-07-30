@@ -23,6 +23,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -75,6 +76,7 @@ import java.net.CookieHandler;
 import java.net.CookieManager;
 import java.net.CookiePolicy;
 import java.util.UUID;
+import java.util.logging.Logger;
 
 import au.com.lionslogistics.lionstv.util.EventLogger;
 import au.com.lionslogistics.lionstv.LionsTvApplication;
@@ -106,6 +108,8 @@ public class PlayerActivity extends Activity implements OnClickListener, ExoPlay
     DEFAULT_COOKIE_MANAGER = new CookieManager();
     DEFAULT_COOKIE_MANAGER.setCookiePolicy(CookiePolicy.ACCEPT_ORIGINAL_SERVER);
   }
+
+  private static final String TAG="PlayerActivity";
 
   private Handler mainHandler;
   private EventLogger eventLogger;
@@ -292,6 +296,7 @@ public class PlayerActivity extends Activity implements OnClickListener, ExoPlay
       String[] extensions;
       if (ACTION_VIEW.equals(action)) {
         uris = new Uri[] {intent.getData()};
+          Log.e(TAG,"Uri: "+intent.getData().toString());
         extensions = new String[] {intent.getStringExtra(EXTENSION_EXTRA)};
       } else if (ACTION_VIEW_LIST.equals(action)) {
         String[] uriStrings = intent.getStringArrayExtra(URI_LIST_EXTRA);

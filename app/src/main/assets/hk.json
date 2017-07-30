@@ -23,10 +23,5 @@
     "thumbnailUrl":"http://www.humeplaster.com.au/logo/hkstv.jpg",
     "title":"香港HKS",
     "source":"http://live.hkstv.hk.lxdns.com/live/hks/playlist.m3u8"
-  },
-  {
-    "thumbnailUrl":"http://www.humeplaster.com.au/logo/tvb.gif",
-    "title":"TVB翡翠台",
-    "source":"http://acm.gg/jade.m3u8"
   }
 ]
