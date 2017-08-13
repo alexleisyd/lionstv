@@ -2,8 +2,9 @@ package au.com.lionslogistics.lionstv.view;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.view.ContextThemeWrapper;
+import android.app.AlertDialog;
+import android.util.Log;
+import android.view.ContextThemeWrapper;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -76,6 +77,31 @@ public class MainActivity extends Activity {
     @Override
     protected void onResume() {
         super.onResume();
+        Log.e(TAG,"On resume...");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.e(TAG,"On pause...");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.e(TAG,"On stop...");
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        Log.e(TAG,"On restart...");
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.e(TAG,"On start...");
         CategoryService.getInstance(this).getAllCategories();
     }
 
@@ -91,6 +117,7 @@ public class MainActivity extends Activity {
         categories=data;
         categoryAdapter.setData(data);
         categoryAdapter.notifyDataSetChanged();
+        listView.setSelection(0);
     }
 
     public void onChannelListReceived(List<Channel> data){

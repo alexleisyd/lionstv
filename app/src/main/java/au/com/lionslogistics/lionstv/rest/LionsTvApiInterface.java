@@ -1,10 +1,13 @@
 package au.com.lionslogistics.lionstv.rest;
 
+import au.com.lionslogistics.lionstv.model.AuthPostRequest;
 import au.com.lionslogistics.lionstv.model.Category;
 import au.com.lionslogistics.lionstv.model.Channel;
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
+import retrofit2.http.POST;
 import retrofit2.http.Query;
 
 /**
@@ -18,4 +21,7 @@ public interface LionsTvApiInterface {
 
     @GET("channel/get")
     Call<Channel[]> getChannelsByCategoryId(@Header("Authorization") String token, @Query("category") int category);
+
+    @POST("user/auth")
+    Call<String> authenticateUser(@Body AuthPostRequest body);
 }

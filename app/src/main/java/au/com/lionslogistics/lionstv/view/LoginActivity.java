@@ -4,11 +4,16 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 
 import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.ContextThemeWrapper;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -18,23 +23,26 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import au.com.lionslogistics.lionstv.R;
+import au.com.lionslogistics.lionstv.service.AuthenticationService;
+import au.com.lionslogistics.lionstv.service.UserService;
+import au.com.lionslogistics.lionstv.util.Constants;
 
 
 /**
  * A login screen that offers login via email/password.
  */
-public class LoginActivity extends Activity{
+public class LoginActivity extends Activity implements AuthenticationService{
 
     /**
      * Keep track of the login task to ensure we can cancel it if requested.
      */
-    private UserLoginTask mAuthTask = null;
-
+    private LoginActivity mContext=this;
     // UI references.
     private TextView mEmailView;
     private EditText mPasswordView;
-    private View mProgressView;
-    private View mLoginFormView;
+    private boolean isLoginInProgress=false;
+    private Button mEmailSignInButton;
+    private ProgressDialog mProgressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,19 +63,29 @@ public class LoginActivity extends Activity{
             }
         });
 
-        Button mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
+        mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
                 attemptLogin();
             }
         });
-
-        mLoginFormView = findViewById(R.id.login_form);
-        mProgressView = findViewById(R.id.login_progress);
     }
 
-
+    @Override
+    protected void onStart() {
+        super.onStart();
+        // Determine whether auto login is setup
+        SharedPreferences preferences=getSharedPreferences(Constants.AUTH_PREF,MODE_PRIVATE);
+        String token=preferences.getString("token","");
+        String username=preferences.getString("username","");
+        String password=preferences.getString("password","");
+        if (!token.equals("")){
+            mEmailView.setText(username);
+            mPasswordView.setText(password);
+            attemptLogin();
+        }
+    }
 
     /**
      * Attempts to sign in or register the account specified by the login form.
@@ -75,7 +93,7 @@ public class LoginActivity extends Activity{
      * errors are presented and no actual login attempt is made.
      */
     private void attemptLogin() {
-        if (mAuthTask != null) {
+        if (isLoginInProgress) {
             return;
         }
 
@@ -113,93 +131,73 @@ public class LoginActivity extends Activity{
             // form field with an error.
             focusView.requestFocus();
         } else {
-            // Show a progress spinner, and kick off a background task to
-            // perform the user login attempt.
-            showProgress(true);
-            mAuthTask = new UserLoginTask(email, password);
-            mAuthTask.execute((Void) null);
+            doSignIn();
         }
     }
 
     private boolean isEmailValid(String email) {
-        //TODO: Replace this with your own logic
-        return email.contains("@");
+        return email.contains("@") && email.contains(".");
     }
 
     private boolean isPasswordValid(String password) {
-        //TODO: Replace this with your own logic
         return password.length() > 4;
     }
 
-    /**
-     * Shows the progress UI and hides the login form.
-     */
-    @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
-    private void showProgress(final boolean show) {
-        // On Honeycomb MR2 we have the ViewPropertyAnimator APIs, which allow
-        // for very easy animations. If available, use these APIs to fade-in
-        // the progress spinner.
-        int shortAnimTime = getResources().getInteger(android.R.integer.config_shortAnimTime);
 
-        mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
-        mLoginFormView.animate().setDuration(shortAnimTime).alpha(
-                show ? 0 : 1).setListener(new AnimatorListenerAdapter() {
-            @Override
-            public void onAnimationEnd(Animator animation) {
-                mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
-            }
-        });
-
-        mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
-        mProgressView.animate().setDuration(shortAnimTime).alpha(
-                show ? 1 : 0).setListener(new AnimatorListenerAdapter() {
-            @Override
-            public void onAnimationEnd(Animator animation) {
-                mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
-            }
-        });
+    @Override
+    public void onAuthenticationSuccessful() {
+        resetView();
+        isLoginInProgress=false;
+        SharedPreferences.Editor editor= getSharedPreferences(Constants.AUTH_PREF,MODE_PRIVATE).edit();
+        editor.putString("token",UserService.getInstance().getToken());
+        editor.putString("username",mEmailView.getText().toString());
+        editor.putString("password",mPasswordView.getText().toString());
+        editor.apply();
+        startActivity(new Intent(this,MainActivity.class));
+        finish();
     }
 
-    /**
-     * Represents an asynchronous login/registration task used to authenticate
-     * the user.
-     */
-    private class UserLoginTask extends AsyncTask<Void, Void, Boolean> {
+    @Override
+    public void onAuthenticationFailed() {
+        resetView();
+        AlertDialog.Builder builder=new AlertDialog.Builder(new ContextThemeWrapper(this,R.style.Theme_Leanback));
+        String msg=getString(R.string.auth_error);
+        builder.setMessage(msg);
+        builder.setTitle(R.string.error);
+        AlertDialog dialog=builder.create();
+        dialog.show();
+    }
 
-        private final String mEmail;
-        private final String mPassword;
+    @Override
+    public void onNetworkError() {
+        resetView();
+        AlertDialog.Builder builder=new AlertDialog.Builder(new ContextThemeWrapper(this,R.style.Theme_Leanback));
+        String msg=getString(R.string.network_error);
+        builder.setMessage(msg);
+        builder.setTitle(R.string.error);
+        AlertDialog dialog=builder.create();
+        dialog.show();
+    }
 
-        UserLoginTask(String email, String password) {
-            mEmail = email;
-            mPassword = password;
-        }
+    private void resetView(){
+        mProgressDialog.dismiss();
+        isLoginInProgress=false;
+        mEmailSignInButton.setText(R.string.action_sign_in);
+        mEmailView.setEnabled(true);
+        mPasswordView.setEnabled(true);
+    }
 
-        @Override
-        protected Boolean doInBackground(Void... params) {
-            // TODO: attempt authentication against a network service.
-
-            // TODO: register the new account here.
-            return true;
-        }
-
-        @Override
-        protected void onPostExecute(final Boolean success) {
-            mAuthTask = null;
-            showProgress(false);
-
-            if (success) {
-                finish();
-            } else {
-                mPasswordView.setError(getString(R.string.error_incorrect_password));
-                mPasswordView.requestFocus();
-            }
-        }
-
-        @Override
-        protected void onCancelled() {
-            mAuthTask = null;
-            showProgress(false);
-        }
+    private void doSignIn(){
+        mProgressDialog=new ProgressDialog(this);
+        mProgressDialog.setTitle(R.string.prompt_sign_in_progress);
+        mProgressDialog.setMessage(getString(R.string.prompt_sing_in_progress_long));
+        mProgressDialog.setCancelable(false);
+        mProgressDialog.show();
+        mEmailSignInButton.setText(R.string.prompt_sign_in_progress);
+        mEmailView.setEnabled(false);
+        mPasswordView.setEnabled(false);
+        isLoginInProgress=true;
+        UserService.getInstance().bindActivity(mContext).authenticate(mEmailView.getText().toString(),mPasswordView.getText().toString());
     }
 }
 

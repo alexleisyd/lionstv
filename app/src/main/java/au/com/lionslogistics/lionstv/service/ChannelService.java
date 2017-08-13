@@ -48,7 +48,7 @@ public class ChannelService {
 
             @Override
             public void onFailure(@NonNull Call<Channel[]> call, @NonNull Throwable t) {
-                parentActivity.onConnectionError("103");
+                parentActivity.onConnectionError("103 - Network Error");
             }
         });
     }
