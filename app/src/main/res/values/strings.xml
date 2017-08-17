@@ -1,5 +1,6 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="app_name">LionsTV</string>
+    <string name="app_title">Lions TV</string>
     <string name="url">Video URL</string>
     <string name="play">Play</string>
     <string name="application_name">ExoPlayer</string>
@@ -45,10 +46,11 @@
 
     <string name="sample_list_load_error">One or more sample lists failed to load</string>
 
-    <string name="network_error">A network error occurred. Error code: </string>
+    <string name="network_error">A network error has occurred.</string>
     <string name="auth_error">Invalid username or password</string>
     <string name="title_activity_login">Sign in</string>
-
+    <string name="label_error">Error</string>
+    <string name="label_error_code"> Error Code: </string>
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
@@ -60,4 +62,7 @@
     <string name="error_invalid_password">This password is too short</string>
     <string name="error_incorrect_password">This password is incorrect</string>
     <string name="error_field_required">This field is required</string>
+    <string name="error_authentication_failed">Authentication Failed</string>
+    <string name="error_server_error">Server Error</string>
+    <string name="error_connection_error">Connection Error</string>
 </resources>

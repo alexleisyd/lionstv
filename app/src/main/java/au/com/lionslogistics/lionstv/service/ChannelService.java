@@ -39,16 +39,16 @@ public class ChannelService {
             @Override
             public void onResponse(@NonNull Call<Channel[]> call, @NonNull Response<Channel[]> response) {
                 if (response.body()==null){
-                    parentActivity.onConnectionError("101");
+//                    parentActivity.onConnectionError("101");
                     return;
                 }
                 List<Channel> data= Arrays.asList(response.body());
-                parentActivity.onChannelListReceived(data);
+//                parentActivity.onChannelListReceived(data);
             }
 
             @Override
             public void onFailure(@NonNull Call<Channel[]> call, @NonNull Throwable t) {
-                parentActivity.onConnectionError("103 - Network Error");
+//                parentActivity.onConnectionError("103 - Network Error");
             }
         });
     }

@@ -44,17 +44,17 @@ public class CategoryService {
                 if (response.body()==null){
                     Log.e(TAG,"Code: "+response.code());
                     Log.e(TAG,"Message: "+response.toString());
-                    parentActivity.onConnectionError("101");
+//                    parentActivity.onConnectionError("101");
                     return;
                 }
                 List<Category> data= Arrays.asList(response.body());
-                parentActivity.onCategoryListReceived(data);
+//                parentActivity.onCategoryListReceived(data);
             }
 
             @Override
             public void onFailure(@NonNull Call<Category[]> call, @NonNull Throwable t) {
                 Log.e(TAG,t.getMessage());
-                parentActivity.onConnectionError("102");
+//                parentActivity.onConnectionError("102");
             }
         });
     }
