@@ -16,7 +16,6 @@ import android.support.v17.leanback.widget.ArrayObjectAdapter;
 import android.support.v17.leanback.widget.HeaderItem;
 import android.support.v17.leanback.widget.ListRow;
 import android.support.v17.leanback.widget.ListRowPresenter;
-import android.support.v17.leanback.widget.ObjectAdapter;
 import android.support.v17.leanback.widget.OnItemViewClickedListener;
 import android.support.v17.leanback.widget.OnItemViewSelectedListener;
 import android.support.v17.leanback.widget.Presenter;
@@ -41,7 +40,8 @@ import java.util.TimerTask;
 
 import au.com.lionslogistics.lionstv.R;
 import au.com.lionslogistics.lionstv.model.Category;
-import au.com.lionslogistics.lionstv.presenter.CardPresentor;
+import au.com.lionslogistics.lionstv.model.Channel;
+import au.com.lionslogistics.lionstv.presenter.CardPresenter;
 import au.com.lionslogistics.lionstv.rest.LionsTvApiClient;
 import au.com.lionslogistics.lionstv.rest.LionsTvApiInterface;
 import au.com.lionslogistics.lionstv.service.UserService;
@@ -137,7 +137,7 @@ public class MainFragment extends BrowseFragment implements OnItemViewClickedLis
             HeaderItem headerItem=new HeaderItem(category.getName());
             ArrayObjectAdapter existingAdaptor=mChannelAdapter.get(category.getId());
             if (existingAdaptor==null) {
-                ArrayObjectAdapter adapter=new ArrayObjectAdapter(new CardPresentor());
+                ArrayObjectAdapter adapter=new ArrayObjectAdapter(new CardPresenter());
                 ListRow listRow=new ListRow(headerItem,adapter);
                 mCategoryRowAdapter.add(listRow);
                 mChannelAdapter.put(category.getId(),adapter);
@@ -150,8 +150,34 @@ public class MainFragment extends BrowseFragment implements OnItemViewClickedLis
         }
     }
 
-    private void loadChannelData(int categoryId){
+    private void loadChannelData(final int categoryId){
+        LionsTvApiInterface restApi = LionsTvApiClient.getInstance().create(LionsTvApiInterface.class);
+        Call<Channel[]> call = restApi.getChannelsByCategoryId(UserService.getInstance().getToken(),categoryId);
+        call.enqueue(new Callback<Channel[]>() {
+            @Override
+            public void onResponse(@NonNull Call<Channel[]> call, @NonNull Response<Channel[]> response) {
+                if (response.body()==null){
+                    Log.e(TAG,"Code: "+response.code());
+                    Log.e(TAG,"Message: "+response.toString());
+                    showDialog(getString(R.string.label_error),getString(R.string.error_server_error)+getString(R.string.label_error_code)+response.code());
+                } else {
+                    List<Channel> data= Arrays.asList(response.body());
+                    onChannelDataReceived(categoryId,data);
+                }
 
+            }
+            @Override
+            public void onFailure(@NonNull Call<Channel[]> call, @NonNull Throwable t) {
+                Log.e(TAG,t.getMessage());
+                showDialog(getString(R.string.label_error),getString(R.string.error_connection_error)+getString(R.string.label_error_code)+404);
+            }
+        });
+    }
+
+    private void onChannelDataReceived(int categoryId, List<Channel> data){
+        ArrayObjectAdapter adapter=mChannelAdapter.get(categoryId);
+        adapter.clear();
+        adapter.addAll(0,data);
     }
 
     private void initBackgroundManager(){
