@@ -14,6 +14,7 @@ import android.support.v17.leanback.app.BackgroundManager;
 import android.support.v17.leanback.app.BrowseFragment;
 import android.support.v17.leanback.widget.ArrayObjectAdapter;
 import android.support.v17.leanback.widget.HeaderItem;
+import android.support.v17.leanback.widget.ImageCardView;
 import android.support.v17.leanback.widget.ListRow;
 import android.support.v17.leanback.widget.ListRowPresenter;
 import android.support.v17.leanback.widget.OnItemViewClickedListener;
@@ -21,6 +22,7 @@ import android.support.v17.leanback.widget.OnItemViewSelectedListener;
 import android.support.v17.leanback.widget.Presenter;
 import android.support.v17.leanback.widget.Row;
 import android.support.v17.leanback.widget.RowPresenter;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.content.ContextCompat;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -243,7 +245,14 @@ public class MainFragment extends BrowseFragment implements OnItemViewClickedLis
 
     @Override
     public void onItemClicked(Presenter.ViewHolder itemViewHolder, Object item, RowPresenter.ViewHolder rowViewHolder, Row row) {
-
+        Channel channel= (Channel) item;
+        Intent intent=new Intent(getActivity(),DetailsActivity.class);
+        intent.putExtra(DetailsActivity.CHANNEL,channel);
+        Bundle bundle = ActivityOptionsCompat.makeSceneTransitionAnimation(
+                getActivity(),
+                ((ImageCardView) itemViewHolder.view).getMainImageView(),
+                DetailsActivity.SHARED_ELEMENT_NAME).toBundle();
+        getActivity().startActivity(intent,bundle);
     }
 
     @Override

@@ -51,6 +51,7 @@
     <string name="title_activity_login">Sign in</string>
     <string name="label_error">Error</string>
     <string name="label_error_code"> Error Code: </string>
+    <string name="title_details">Channel details</string>
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
@@ -65,4 +66,6 @@
     <string name="error_authentication_failed">Authentication Failed</string>
     <string name="error_server_error">Server Error</string>
     <string name="error_connection_error">Connection Error</string>
+
+    <string name="dummy_body">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id ante aliquet, tincidunt augue in, euismod sapien. Vivamus feugiat non felis id mollis. Donec ex augue, sodales vitae tincidunt laoreet, fringilla vel quam. Quisque feugiat, metus eget auctor dictum, magna magna lacinia urna, vitae euismod ex dolor euismod dui. Donec enim est, ultricies et metus at, varius commodo leo. Aliquam lacinia dignissim metus, ut sollicitudin lectus facilisis eget. Mauris eget nunc id dolor ultricies gravida ac non est. Suspendisse lectus lorem, congue id nisl vitae, porttitor ultrices tortor.</string>
 </resources>

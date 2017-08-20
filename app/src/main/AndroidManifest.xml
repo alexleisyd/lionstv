@@ -24,6 +24,7 @@
             android:name=".view.MainActivity"/>
         <activity android:name=".view.PlayerActivity" />
         <activity android:name=".view.SearchActivity"/>
+        <activity android:name=".view.DetailsActivity"/>
         <activity
             android:name=".view.LoginActivity"
             android:label="@string/title_activity_login" >

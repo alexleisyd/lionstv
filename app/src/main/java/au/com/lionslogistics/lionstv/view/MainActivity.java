@@ -2,43 +2,22 @@ package au.com.lionslogistics.lionstv.view;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.app.AlertDialog;
 import android.support.annotation.Nullable;
-import android.util.Log;
-import android.view.ContextThemeWrapper;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ListView;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 import au.com.lionslogistics.lionstv.R;
-import au.com.lionslogistics.lionstv.model.Category;
-import au.com.lionslogistics.lionstv.model.Channel;
-import au.com.lionslogistics.lionstv.service.CategoryService;
-import au.com.lionslogistics.lionstv.service.ChannelService;
-import au.com.lionslogistics.lionstv.util.CategoryAdapter;
-import au.com.lionslogistics.lionstv.util.ThumbnailAdapter;
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 /**
  * Created by alex-daphne on 24/07/2017.
  * All rights reserved
  */
 
-public class MainActivity extends Activity {
+public class MainActivity extends LeanbackActivity {
     private static final String TAG="MainActivity";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main);
+        setContentView(R.layout.activity_main);
     }
     //    @BindView(R.id.listView)
 //    ListView listView;
