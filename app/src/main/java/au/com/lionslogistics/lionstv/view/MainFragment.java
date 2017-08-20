@@ -257,7 +257,10 @@ public class MainFragment extends BrowseFragment implements OnItemViewClickedLis
 
     @Override
     public void onItemSelected(Presenter.ViewHolder itemViewHolder, Object item, RowPresenter.ViewHolder rowViewHolder, Row row) {
-
+        if (item instanceof Channel){
+            mBackgroundURI = Uri.parse(((Channel)item).getBgUrl());
+            startBackgroundTimer();
+        }
     }
 
     private class UpdateBackgroundTask extends TimerTask {

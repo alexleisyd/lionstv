@@ -14,13 +14,17 @@ public class Channel implements Parcelable{
     private String subTitle;
     private String description;
     private Source[] sources;
+    private String tvId;
+    private String bgUrl;
 
-    public Channel(String thumbnailUrl, String title,String subTitle,String description, Source[] sources) {
+    public Channel(String thumbnailUrl, String title,String subTitle,String description, Source[] sources, String tvId, String bgUrl) {
         this.thumbnailUrl = thumbnailUrl;
         this.title = title;
         this.subTitle=subTitle;
         this.description=description;
         this.sources = sources;
+        this.tvId=tvId;
+        this.bgUrl=bgUrl;
     }
 
     private Channel(Parcel in){
@@ -29,6 +33,8 @@ public class Channel implements Parcelable{
         subTitle=in.readString();
         description=in.readString();
         sources= (Source[]) in.createTypedArray(Source.CREATOR);
+        tvId=in.readString();
+        bgUrl=in.readString();
     }
 
 
@@ -72,6 +78,22 @@ public class Channel implements Parcelable{
         this.description = description;
     }
 
+    public String getTvId() {
+        return tvId;
+    }
+
+    public void setTvId(String tvId) {
+        this.tvId = tvId;
+    }
+
+    public String getBgUrl() {
+        return bgUrl;
+    }
+
+    public void setBgUrl(String bgUrl) {
+        this.bgUrl = bgUrl;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -84,6 +106,8 @@ public class Channel implements Parcelable{
         dest.writeString(this.subTitle);
         dest.writeString(this.description);
         dest.writeTypedArray(this.sources,0);
+        dest.writeString(this.tvId);
+        dest.writeString(this.bgUrl);
     }
 
     public static final Parcelable.Creator CREATOR=new Parcelable.Creator(){

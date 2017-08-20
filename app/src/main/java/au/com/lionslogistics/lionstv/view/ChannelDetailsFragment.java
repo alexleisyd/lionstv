@@ -53,6 +53,7 @@ public class ChannelDetailsFragment extends DetailsFragment {
         if (mSelectedChannel!=null){
             setupAdapter();
             setupDetailsOverviewRow();
+            updateBackground(mSelectedChannel.getBgUrl());
         }
     }
 
@@ -117,9 +118,24 @@ public class ChannelDetailsFragment extends DetailsFragment {
         SparseArrayObjectAdapter adapter=new SparseArrayObjectAdapter();
         Source[] sources=mSelectedChannel.getSources();
         for (int i=0;i<sources.length;i++){
-            adapter.set(i,new Action(i,sources[i].getName(),sources[i].getName()));
+            adapter.set(i,new Action(i,sources[i].getName(),sources[i].getType()));
         }
         row.setActionsAdapter(adapter);
         mRowsAdapter.add(row);
+    }
+
+    private void updateBackground(String uri) {
+        Glide.with(this)
+                .load(uri)
+                .asBitmap()
+                .centerCrop()
+                .error(mDefaultBackground)
+                .into(new SimpleTarget<Bitmap>(mMetrics.widthPixels, mMetrics.heightPixels) {
+                    @Override
+                    public void onResourceReady(Bitmap resource,
+                                                GlideAnimation<? super Bitmap> glideAnimation) {
+                        mBackgroundManager.setBitmap(resource);
+                    }
+                });
     }
 }

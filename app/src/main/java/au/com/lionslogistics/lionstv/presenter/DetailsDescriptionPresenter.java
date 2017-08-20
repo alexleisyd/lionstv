@@ -16,6 +16,6 @@ public class DetailsDescriptionPresenter extends AbstractDetailsDescriptionPrese
         Channel channel= (Channel) item;
         vh.getTitle().setText(channel.getTitle());
         vh.getSubtitle().setText(channel.getTitle());
-        vh.getBody().setText(R.string.dummy_body);
+        vh.getBody().setText(channel.getDescription());
     }
 }

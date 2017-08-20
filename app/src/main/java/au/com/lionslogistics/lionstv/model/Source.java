@@ -10,15 +10,18 @@ import android.os.Parcelable;
 
 public class Source implements Parcelable{
     private String name;
+    private String type;
     private String url;
 
-    public Source(String name, String url) {
+    public Source(String name,String type, String url) {
         this.name = name;
+        this.type=type;
         this.url = url;
     }
 
     public Source(Parcel in){
         this.name=in.readString();
+        this.type=in.readString();
         this.url=in.readString();
     }
 
@@ -38,6 +41,14 @@ public class Source implements Parcelable{
         this.url = url;
     }
 
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -46,6 +57,7 @@ public class Source implements Parcelable{
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(name);
+        dest.writeString(type);
         dest.writeString(url);
     }
 
