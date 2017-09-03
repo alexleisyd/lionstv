@@ -192,6 +192,7 @@ public class MainFragment extends BrowseFragment implements OnItemViewClickedLis
 
     private void setupUIElements(){
         setTitle(getString(R.string.app_title));
+        setBadgeDrawable(getActivity().getResources().getDrawable(R.mipmap.banner,null));
         setHeadersState(HEADERS_ENABLED);
         setHeadersTransitionOnBackEnabled(true);
         setBrandColor(ContextCompat.getColor(getActivity(),R.color.colorFastlane));
@@ -259,7 +260,7 @@ public class MainFragment extends BrowseFragment implements OnItemViewClickedLis
     public void onItemSelected(Presenter.ViewHolder itemViewHolder, Object item, RowPresenter.ViewHolder rowViewHolder, Row row) {
         if (item instanceof Channel){
             mBackgroundURI = Uri.parse(((Channel)item).getBgUrl());
-            startBackgroundTimer();
+//            startBackgroundTimer();
         }
     }
 
